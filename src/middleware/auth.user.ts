@@ -13,23 +13,23 @@ export function isAuthenticated(
     const authToken = request.headers.authorization;
 
     if(!authToken) {
-        return response.status(401).end();
+        response.status(401);
+
+        throw new Error('Não autorizado')
     }
 
-    const [, token] = authToken.split(" ");
+    const token = authToken.split(" ")[1];
 
     try {
-        // sub is user ID
         const { sub } = verify(
             token,
-            process.env.JWT_TOKEN as string,
+            process.env.JWT_SECRET,
         ) as Payload;
 
         request.user_id = sub;
 
-        return next();
-
+        next();
     } catch(err) {
-        return response.status(401).end()
+        response.status(401).end()
     }
 }

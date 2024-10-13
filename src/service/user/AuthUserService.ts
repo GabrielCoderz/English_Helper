@@ -35,6 +35,7 @@ class AuthUserService {
             },
             process.env.JWT_SECRET, // need to disable strict mode on tsconfig.json
             {
+                subject: user.id,
                 expiresIn: '30d',
             }
         )

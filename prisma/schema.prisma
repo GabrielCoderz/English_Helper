@@ -9,7 +9,7 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name      String
   email     String   @unique
   password  String
@@ -45,7 +45,7 @@ model Caption {
 
 model MarkedPhrase {
   id        Int      @id @default(autoincrement())
-  userId    Int      
+  userId    String      
   captionId Int      
   difficultyLevel Int @default(1) 
   createdAt DateTime @default(now())
@@ -56,7 +56,7 @@ model MarkedPhrase {
 
 model SavedWord {
   id        Int      @id @default(autoincrement())
-  userId    Int      
+  userId    String      
   word      String
   context   String? 
   createdAt DateTime @default(now())
