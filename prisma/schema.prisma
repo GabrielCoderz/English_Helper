@@ -1,0 +1,65 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-arm64-openssl-1.1.x"]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  markedPhrases MarkedPhrase[]
+  savedWords    SavedWord[]
+}
+
+model Video {
+  id          Int      @id @default(autoincrement())
+  youtubeUrl  String   @unique
+  title       String
+  description String?
+  uploadedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  captions Caption[]
+}
+
+model Caption {
+  id        Int      @id @default(autoincrement())
+  videoId   Int
+  startTime Float  
+  endTime   Float    
+  text      String 
+  createdAt DateTime @default(now())
+
+  video         Video     @relation(fields: [videoId], references: [id])
+  markedPhrases MarkedPhrase[]
+}
+
+model MarkedPhrase {
+  id        Int      @id @default(autoincrement())
+  userId    Int      
+  captionId Int      
+  difficultyLevel Int @default(1) 
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  caption Caption @relation(fields: [captionId], references: [id])
+}
+
+model SavedWord {
+  id        Int      @id @default(autoincrement())
+  userId    Int      
+  word      String
+  context   String? 
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
