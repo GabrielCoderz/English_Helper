@@ -14,8 +14,6 @@ export function isAuthenticated(
 
     if(!authToken) {
         response.status(401);
-
-        throw new Error('Não autorizado')
     }
 
     const token = authToken.split(" ")[1];
