@@ -1,0 +1,27 @@
+.fancy-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6200ea;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: #3700b3; /* Cor ao passar o mouse */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.4); /* Foco com efeito */
+  }
+}

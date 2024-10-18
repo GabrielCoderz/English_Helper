@@ -1,0 +1,4 @@
+<h1 class="app-title">English Helper</h1>
+<app-video [app-video-id]="input" (app-current-time)="currentTimeVideo($event)"></app-video>
+<app-input (app-data)="setLegendData($event)" (app-input)="inputValue($event)"></app-input>
+<p>{{ currentLegendText }}</p>

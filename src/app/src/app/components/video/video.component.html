@@ -1,0 +1,8 @@
+<div class="video-container">
+  <youtube-player id="myVideo" #youtubePlayer [videoId]="videoId" loadApi="true" (change)="onStateChange($event)"></youtube-player>
+</div>
+
+{{ videoId }}
+
+<button (click)="currentTime()">current time</button>
+

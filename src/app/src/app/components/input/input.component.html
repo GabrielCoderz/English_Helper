@@ -1,0 +1,30 @@
+<div class="input-container">
+  <input
+    type="text"
+    placeholder="https://www.youtube.com/watch?v=q3xRWZzVPtk"
+    class="fancy-input"
+    [(ngModel)]="inputValue"
+  />
+
+  <span class="input-underline"></span>
+</div>
+
+
+<div class="app-search-container">
+  <app-button
+  class="input-button"
+  (app-button-click)="searchLegend($event)"
+></app-button>
+</div>
+
+<p><strong>Texto selecionado:</strong> {{ selectedText }}</p>
+
+<!-- @if(data.length > 0) {
+  <div (mouseup)="captureSelection()">
+    @for (item of data; track item) {
+      <p>{{item.text}}</p>
+    }
+  </div>
+} -->
+
+
