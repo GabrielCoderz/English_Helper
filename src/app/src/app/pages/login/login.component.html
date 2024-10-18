@@ -1,0 +1,26 @@
+<div class="app-login-container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label>
+        <fa-icon [icon]="faUser"></fa-icon>
+      </label>
+      <input type="email" placeholder="Email" formControlName="email">
+    </div>
+    <div class="form-field">
+      <label>
+        <fa-icon [icon]="faLock"></fa-icon>
+      </label>
+      <input type="password" placeholder="Senha" formControlName="password">
+    </div>
+    <div class="form-field">
+      <button type="submit" [disabled]="!userForm.valid" (click)="show()">Entrar</button>
+    </div>
+  </form>
+  <p-toast />
+  <p-button label="Submit" />
+
+  <p class="text-register">
+    Primeira vez?
+    <a href="#">Registrar</a>
+  </p>
+</div>

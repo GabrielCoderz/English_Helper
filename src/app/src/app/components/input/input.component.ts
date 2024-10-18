@@ -18,7 +18,7 @@ interface Video {
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [ButtonComponent, FormsModule, AsyncPipe, CommonModule],
+  imports: [ButtonComponent, FormsModule, AsyncPipe],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })

@@ -1,19 +1,31 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputComponent, Legends } from './components/input/input.component';
 import { VideoLegendService } from './services/video-legend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { VideoComponent } from './components/video/video.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, InputComponent, HttpClientModule, CommonModule, VideoComponent],
+  imports: [
+    RouterOutlet,
+    HttpClientModule,
+    // BrowserAnimationsModule,
+    // BrowserModule,
+    // CommonModule,
+    InputComponent,
+    VideoComponent,
+  ],
   providers: [VideoLegendService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'app';
