@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputComponent, Legends } from './components/input/input.component';
 import { VideoLegendService } from './services/video-legend.service';
@@ -8,6 +8,7 @@ import { VideoComponent } from './components/video/video.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -27,11 +28,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrl: './app.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
   data: Legends[] = []
   currentLegendText = ''
   input = ''
+
+  constructor(private primengConfig: PrimeNGConfig) {
+
+  }
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true
+  }
 
   setLegendData(event: any) {
     console.log(event)

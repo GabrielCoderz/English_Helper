@@ -1,21 +1,11 @@
-// @import "primeng/resources/themes/lara-light-blue/theme.css";
-// @import "primeng/resources/primeng.css";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  text-decoration: none;
-}
-
-::selection {
-  background-color: #6200ea; /* Cor de fundo ao selecionar */
-  color: white; /* Cor do texto ao selecionar */
-}
+@import "primeng/resources/primeng.css";
+@import "primeng/resources/themes/lara-dark-amber/theme.css";
+@import "primeicons/primeicons.css";
 
 body {
-  background-color: #2B3337;
-  color: aliceblue
+  outline: 0 none;
+  outline-offset: 0px;
+  box-shadow: none;
+  text-decoration: none;
+  margin: 0;
 }

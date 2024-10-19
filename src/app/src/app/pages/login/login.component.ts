@@ -7,11 +7,26 @@ import { LoginService } from '../../services/login/login.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ToastModule, ButtonModule, FontAwesomeModule],
+  imports: [
+    ReactiveFormsModule,
+    ToastModule,
+    ButtonModule,
+    FontAwesomeModule,
+    FloatLabelModule,
+    InputTextModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    RippleModule
+  ],
   providers: [LoginService, MessageService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -37,14 +52,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login({
       email,
       password
-    }).subscribe(data => {
-      console.log(data)
+    })
+    .pipe()
+    .subscribe({
+      next: (data) => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Bem vindo!' }),
+      error: (err) => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha incorretos.' })
     })
   }
-
-  show() {
-    console.log('veio')
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-}
-
 }

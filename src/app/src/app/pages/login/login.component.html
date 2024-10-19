@@ -1,26 +1,33 @@
 <div class="app-login-container">
+  <h1>English <span>Helper</span></h1>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
-      <label>
-        <fa-icon [icon]="faUser"></fa-icon>
-      </label>
-      <input type="email" placeholder="Email" formControlName="email">
+      <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <input pInputText type="email" placeholder="Email" formControlName="email">
+      </p-inputGroup>
     </div>
-    <div class="form-field">
-      <label>
-        <fa-icon [icon]="faLock"></fa-icon>
-      </label>
-      <input type="password" placeholder="Senha" formControlName="password">
-    </div>
-    <div class="form-field">
-      <button type="submit" [disabled]="!userForm.valid" (click)="show()">Entrar</button>
-    </div>
-  </form>
-  <p-toast />
-  <p-button label="Submit" />
 
-  <p class="text-register">
-    Primeira vez?
-    <a href="#">Registrar</a>
-  </p>
+    <div class="form-field">
+      <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-lock"></i>
+        </p-inputGroupAddon>
+        <input pInputText type="password" placeholder="Senha" formControlName="password">
+      </p-inputGroup>
+    </div>
+
+    <div class="form-field">
+      <button pButton pRipple type="submit" label="Entrar" [disabled]="!userForm.valid"></button>
+    </div>
+
+    <p-toast />
+
+    <p class="text-register">
+      Primeira vez?
+      <a href="#">Registrar</a>
+    </p>
+  </form>
 </div>
