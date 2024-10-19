@@ -16,12 +16,21 @@
         <p-inputGroupAddon>
             <i class="pi pi-lock"></i>
         </p-inputGroupAddon>
-        <input pInputText type="password" placeholder="senha" formControlName="password">
+        <p-password type="password" placeholder="senha" formControlName="password" [toggleMask]="true" [feedback]="false" />
       </p-inputGroup>
     </div>
 
     <div class="form-field">
-      <button pButton pRipple type="submit" label="Entrar" [disabled]="!userForm.valid"></button>
+      @if(!loading) {
+        <button pButton pRipple type="submit" label="Entrar" [disabled]="!userForm.valid"></button>
+      } @else {
+        <p-progressSpinner
+          ariaLabel="loading"
+          strokeWidth="2"
+          animationDuration=".5s"
+        />
+      }
+
     </div>
 
     <p class="text-register">

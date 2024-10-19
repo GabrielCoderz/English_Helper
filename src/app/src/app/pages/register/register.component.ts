@@ -13,6 +13,7 @@ import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth/auth.service';
 import { timer } from 'rxjs';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,8 @@ import { timer } from 'rxjs';
     InputGroupModule,
     InputGroupAddonModule,
     RippleModule,
-    RouterModule
+    RouterModule,
+    PasswordModule
   ],
   providers: [AuthService, MessageService],
   templateUrl: './register.component.html',

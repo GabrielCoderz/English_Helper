@@ -13,6 +13,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { RippleModule } from 'primeng/ripple';
 import { Router, RouterModule } from '@angular/router';
+import { PasswordModule } from 'primeng/password';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +30,9 @@ import { Router, RouterModule } from '@angular/router';
     InputGroupModule,
     InputGroupAddonModule,
     RippleModule,
-    RouterModule
+    RouterModule,
+    PasswordModule,
+    ProgressSpinnerModule
   ],
   providers: [AuthService, MessageService],
   templateUrl: './login.component.html',
@@ -42,6 +47,8 @@ export class LoginComponent implements OnInit {
   faUser = faUser;
   faLock = faLock;
 
+  loading: boolean = false;
+
   constructor(
     private loginService: AuthService,
     private messageService: MessageService,
@@ -52,6 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true
     const email = this.userForm.value.email!
     const password = this.userForm.value.password!
 
@@ -59,13 +67,20 @@ export class LoginComponent implements OnInit {
       email,
       password
     })
-    .pipe()
+    .pipe(
+      finalize(() => {
+        console.info('complete')
+        this.loading = false
+      })
+    )
     .subscribe({
       next: (data) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Bem vindo!' });
         this.router.navigate(['/playground']);
       },
-      error: (err) => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha incorretos.' })
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha incorretos.' })
+      },
     })
   }
 }

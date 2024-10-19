@@ -25,7 +25,17 @@
         <p-inputGroupAddon>
             <i class="pi pi-lock"></i>
         </p-inputGroupAddon>
-        <input pInputText type="password" placeholder="senha" formControlName="password">
+        <p-password
+          type="password"
+          placeholder="senha"
+          formControlName="password"
+          [toggleMask]="true"
+          [feedback]="true"
+          promptLabel=" "
+          weakLabel="Senha fraca"
+          mediumLabel="Senha média"
+          strongLabel="Senha forte"
+        />
       </p-inputGroup>
     </div>
 
