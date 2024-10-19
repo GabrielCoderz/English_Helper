@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import { LoginService } from '../../services/login/login.service';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
-import { Router, RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { MessageService } from 'primeng/api';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -30,11 +29,12 @@ import { Router, RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [LoginService, MessageService],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   userForm = new FormGroup({
+    name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
@@ -42,11 +42,7 @@ export class LoginComponent implements OnInit {
   faUser = faUser;
   faLock = faLock;
 
-  constructor(
-    private loginService: LoginService,
-    private messageService: MessageService,
-    private router: Router,
-  ) { }
+  constructor(private loginService: LoginService, private messageService: MessageService) { }
 
   ngOnInit() {
   }
@@ -61,11 +57,9 @@ export class LoginComponent implements OnInit {
     })
     .pipe()
     .subscribe({
-      next: (data) => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Bem vindo!' });
-        this.router.navigate(['/playground']);
-      },
+      next: (data) => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Bem vindo!' }),
       error: (err) => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email ou senha incorretos.' })
     })
   }
+
 }

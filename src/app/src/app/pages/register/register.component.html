@@ -7,6 +7,15 @@
         <p-inputGroupAddon>
             <i class="pi pi-user"></i>
         </p-inputGroupAddon>
+        <input pInputText type="text" placeholder="Nickname" formControlName="name">
+      </p-inputGroup>
+    </div>
+
+    <div class="form-field">
+      <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
         <input pInputText type="email" placeholder="Email" formControlName="email">
       </p-inputGroup>
     </div>
@@ -21,12 +30,12 @@
     </div>
 
     <div class="form-field">
-      <button pButton pRipple type="submit" label="Entrar" [disabled]="!userForm.valid"></button>
+      <button pButton pRipple type="submit" label="Cadastrar" [disabled]="!userForm.valid"></button>
     </div>
 
     <p class="text-register">
-      Primeira vez?
-      <a routerLink="/sign-up">Registrar</a>
+      Já possui uma conta ?
+      <a routerLink="/sign-in">Entrar</a>
     </p>
   </form>
 </div>
