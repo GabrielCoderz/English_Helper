@@ -3,7 +3,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoffee, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import { LoginService } from '../../services/login/login.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -29,7 +29,7 @@ import { Router, RouterModule } from '@angular/router';
     RippleModule,
     RouterModule
   ],
-  providers: [LoginService, MessageService],
+  providers: [AuthService, MessageService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   faLock = faLock;
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private messageService: MessageService,
     private router: Router,
   ) { }
